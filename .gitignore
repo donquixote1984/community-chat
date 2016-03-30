@@ -1,3 +1,4 @@
+bin/terminal.sh
 lib
 umd
 examples/**/*-bundle.js
