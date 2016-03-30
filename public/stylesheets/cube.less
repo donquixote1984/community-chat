@@ -1,0 +1,153 @@
+div,ul,li {
+  box-sizing: border-box;
+}
+ul, li {
+  padding:0;
+  margin:0;
+}
+#content {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  perspective: 1000px;
+  box-sizing: border-box;
+}
+.world {
+  position: relative;
+  width:100%;
+  height:100%;
+  box-sizing: border-box;
+  transform:rotateX(0deg);
+  transform-style:preserve-3d;
+  transform-origin:bottom;
+}
+.world-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  padding-top:150px;
+  transform-style:preserve-3d; 
+}
+.building {
+  position:absolute;
+  padding:20px;
+  transform-style:preserve-3d;
+  overflow: visible; 
+}
+.layout {
+  box-sizing: border-box;
+  margin:30px;
+  display: inline-block;
+  padding:30px;
+  transform-style:preserve-3d;
+  position: absolute;
+}
+
+.cube {
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg) rotateY(-15deg);
+  overflow:visible;
+  //transform: rotateX(-15deg) rotateY(15deg);
+}
+.plane-wrapper {
+  position: relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+}
+.plane {
+  position: absolute;
+  border: 1px solid #888;
+  background: #FFF;
+  height:100%;
+  width:100%;
+  left:0;
+  bottom:0;
+  backface-visibility:visible;
+}
+
+.buildings {
+}
+.front {
+  transform-origin: 100% 100%;
+  transform: rotate3d(1,0,0,-90deg);
+}
+
+.top {
+}
+
+
+.left {
+   transform-origin: 0 0;
+   transform: rotate3d(0,1,0,-90deg);
+   border-right: 0 none;
+}
+
+.right {
+  transform-origin: 100% 0;
+  transform: rotate3d(0,1,0,90deg);
+  border-left: 0 none;
+}
+
+.back {
+  transform-origin: 0 0;
+  transform: rotate3d(1,0,0,90deg);
+}
+
+#message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  background: #D4D4D4;
+  border-top: 1px solid #949393;
+  box-shadow: 1px 0px 10px #ddd inset;
+  input {
+    padding: 5px 10px;
+    font-size:1.5em;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+.building-title {
+  text-align: right;
+}
+
+#message-board {
+  position:absolute;
+  top:0;
+  right:0;
+  width: 400px;
+  height:600px;
+  background:#eaeaea;
+}
+
+.message-title {
+  font-size:0.8em;
+}
+.message-plane {
+  color:#fff;
+  font-size: 0.8em;
+  padding: 5px;
+  height: auto;
+  top: 0;
+  left: 0;
+  word-break:break-all;
+  position: absolute;
+  background: #5d5d5d;
+  width: 100%;
+  border: 1px solid #777;
+}
+.message-plane:before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    border: 5px solid transparent;
+    border-right: 5px solid #676767;
+    width: 0;
+    height: 0;
+}

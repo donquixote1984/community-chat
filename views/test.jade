@@ -1,0 +1,87 @@
+doctype html
+html
+   head
+      title= title
+   body
+      style.
+
+         .perspective {
+            perspective: 1000px;
+            width:200px;
+            height: 200px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 400px;
+            margin-top: 200px;
+         }
+
+         .cube {
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(15deg);
+         }
+
+         .plane {
+            overflow: hidden;
+            position: absolute;
+            border: 1px solid #888;
+            background: #FFF;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.1),
+            0 0 50px rgba(0, 0, 0, 0.3);
+            color: #333;
+            line-height: 200px;
+            opacity: 0.8;
+         }
+
+         .front {
+            width:200px;
+            height: 200px;
+            transform: translate3d(0, 0, 100px);
+         }
+
+         .top {
+           width: 200px;
+            height: 200px;
+            transform: rotateX(90deg) translateZ(100px);
+         }
+
+         .bottom {
+            width:200px;
+            height:200px;
+            transform: rotateX(-90deg) translateZ(100px);
+         }
+
+         .left {
+            width: 200px;
+            height: 200px;
+            transform: rotateY(-90deg) translateZ(100px);
+         }
+
+         .right {
+            width: 200px;
+            height: 200px;
+            transform: rotateY(90deg) translateZ(100px);
+         }
+
+         .back {
+            width: 200px;
+            height: 200px;
+            transform: rotateY(180deg) translateZ(100px);
+         }
+
+
+      .perspective
+         .cube
+            .plane.front
+            .plane.top
+            .plane.bottom
+            .plane.left
+            .plane.right
+            .plane.back
+
+
+
