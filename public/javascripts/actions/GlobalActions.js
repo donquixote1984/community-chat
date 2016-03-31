@@ -24,6 +24,12 @@ var GlobalActions = {
       actionType: GlobalConstants.ROTATE,
       rotate: rotate
     })
+  },
+  transform: function(transform){
+    AppDispatcher.dispatch({
+      actionType: GlobalConstants.TRANSFORM,
+      transform:transform 
+    })
   }
 
 };

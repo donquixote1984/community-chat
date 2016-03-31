@@ -38,7 +38,7 @@ var World = React.createClass({
 
         })*/
         MessageStore.addChangeListener(_this._onChange);
-        TransformStore.addChangeListener(_this.onTransform);
+        TransformStore.addChangeListener(_this._onTransform);
         socket.on(GlobalConstants.SOCKET_RECEIVE_MESSAGE, function(data){
           GlobalActions.receive_message(data);
         })
@@ -67,7 +67,8 @@ var World = React.createClass({
         });
         var transform_string = "rotateX("+this.state.transforms.rotate.x+"deg)"+
         "rotateY("+this.state.transforms.rotate.y+"deg)"+
-        "rotateZ("+this.state.transforms.rotate.z+"deg)";
+        "rotateZ("+this.state.transforms.rotate.z+"deg)"+
+        "translateX("+this.state.transforms.translate.x+"px)";
 
         var transform_style = {
           transform: transform_string

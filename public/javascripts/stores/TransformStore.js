@@ -21,7 +21,17 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js')
 var add_rotate = function(rotate){
   _transform.rotate.x+=rotate.x;
   _transform.rotate.y+=rotate.y;
-  _transform.rotate.z+=rotate.z;
+  _transform.rotate.z+=0;
+}
+
+var add_translate = function(translate){
+  _transform.translate.x += translate.x;
+  _transform.translate.y +=translate.y;
+  _transform.translate.z +=translate.z;
+}
+var add_transform = function(transform){
+  add_rotate(transform.rotate);
+  add_translate(transform.translate);
 }
 var TransformStore = assign({}, EventEmitter.prototype,{
 
@@ -47,6 +57,9 @@ AppDispatcher.register(function(action){
         add_rotate(action.rotate);
         TransformStore.emitChange();
       break;
+    case GlobalConstants.TRANSFORM:
+        add_transform(action.transform);
+        TransformStore.emitChange();
     default:
       // no op
       break;
