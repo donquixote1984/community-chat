@@ -5,16 +5,18 @@ var $ = require('jquery');
 var GlobalConstants = require('../constants/GlobalConstants.js');
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var GlobalActions = require('../actions/GlobalActions.js');
-
+var Eye = require('./Eye.js')
 var MessageStore = require('../stores/MessageStore.js');
-
+var TransformStore = require('../stores/TransformStore.js');
+var cube = require('../../stylesheets/eye.less')
 var World = React.createClass({
     getInitialState: function(){
         return {
             width: $(window).width(),
             height:$(window).height(),
             buildings:[],
-            messages: MessageStore.getAll()
+            messages: MessageStore.getAll(),
+            transforms: TransformStore.getAll()
         }
     },
     componentDidMount: function(){
@@ -35,7 +37,8 @@ var World = React.createClass({
             }
 
         })*/
-        MessageStore.addChangeListener(_this._onChange)
+        MessageStore.addChangeListener(_this._onChange);
+        TransformStore.addChangeListener(_this.onTransform);
         socket.on(GlobalConstants.SOCKET_RECEIVE_MESSAGE, function(data){
           GlobalActions.receive_message(data);
         })
@@ -44,6 +47,9 @@ var World = React.createClass({
     _onChange: function(){
         this.setState({messages: MessageStore.getAll()})
     } ,
+    _onTransform: function(){
+        this.setState({transforms: TransformStore.getAll()})
+    },
     render: function () {
 
         var size = {
@@ -58,10 +64,16 @@ var World = React.createClass({
                messageContainer[message.from] = []
             }
             messageContainer[message.from].push(message);
-        })
-        console.log(messageContainer)
+        });
+        var transform_string = "rotateX("+this.state.transforms.rotate.x+"deg)"+
+        "rotateY("+this.state.transforms.rotate.y+"deg)"+
+        "rotateZ("+this.state.transforms.rotate.z+"deg)";
+
+        var transform_style = {
+          transform: transform_string
+        };
        return (
-          <div className='world'>
+          <div className='world' style={transform_style}>
             {
               this.state.buildings.map(function(building){
                  return (

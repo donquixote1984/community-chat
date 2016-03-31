@@ -11,19 +11,22 @@ var MessageBoard = React.createClass({
 	},
 
 	componentDidMount: function() {
-		console.log(this.state)
     	MessageStore.addChangeListener(this._onChange);
   	},
   	_onChange:function(){
   		this.setState({messages: MessageStore.getAll()})
   	},
+  	componentDidUpdate: function() {
+  		var node = this.getDOMNode();
+  		node.scrollTop = node.scrollHeight;
+	},
 	render: function() {
 		return (
 			<div id="message-board">
 				<ul>
 					{
 						this.state.messages.map(function(message){
-							return (<li><MessageTip text={message.text}/></li>)
+							return (<li><MessageTip message={message}/></li>)
 						})
 					}
 				</ul>

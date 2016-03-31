@@ -5,7 +5,23 @@ var grid_y = 6;
 var height_factor = 8;
 
 var Building = React.createClass({
-
+    getInitialState: function(){
+        return {
+            messages:[],
+            blink:false
+        }
+    },
+    componentWillReceiveProps: function(newProps){
+        this.setState({blink:false})
+        if(newProps.messages){
+            if(newProps.messages.length>3){
+                this.setState({blink:true,messages:newProps.messages.slice(newProps.messages.length-3, newProps.messages.length)});
+            }
+            else{
+                this.setState({blink:true,messages: newProps.messages});
+            }
+        }
+    },
     render: function(){
 
         var unit_x = (this.props.size.width-200)/grid_x;
@@ -55,10 +71,12 @@ var Building = React.createClass({
             height: this.props.size.width+"px",
         }
 
+        
+
         return (
             <div className="building" style={position_style}>
                 
-                <ul className="plane-wrapper">
+                <ul className={"plane-wrapper "+(this.state.blink?"message-blink":"")}>
                 	<li className="plane front"></li>
                     <li className="plane back"></li>
                     <li className="plane left"></li>
@@ -67,11 +85,12 @@ var Building = React.createClass({
                         {this.props.data.name}
                     </li>
                     {
-                        this.props.messages?
+                        this.state.messages.length>0?
                         <li className="top message-plane" style={message_playe_style}>
                             <ul className="message-box">
                                     {
-                                        this.props.messages.map(function(message){
+                                        
+                                        this.state.messages.map(function(message){
                                             return (
                                                 <li>
                                                     <div className="message-title">{message.time} {message.name}</div>

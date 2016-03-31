@@ -17,10 +17,14 @@ var GlobalActions = {
       actionType: GlobalConstants.RECEIVE_MESSAGE,
       message:message
     });
+  },
+
+  rotate: function(rotate){
+    AppDispatcher.dispatch({
+      actionType: GlobalConstants.ROTATE,
+      rotate: rotate
+    })
   }
-
-
-  
 
 };
 

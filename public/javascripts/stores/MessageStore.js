@@ -9,13 +9,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js')
 
 var socket = require('../socket/socket.js');
 var add_message = function(message){
-  for(var i = 0;i<_messages.length;i++){
-    var _message = _messages[i];
-    if(_message.from === message.from){
-      _messages[i] = message;
-      return;
-    }
-  }
+  
 
 	if(_messages.length>=_message_window_size){
 		_messages.shift();

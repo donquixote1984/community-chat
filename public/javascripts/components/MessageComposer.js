@@ -31,7 +31,7 @@ var MessageComposer = React.createClass({
 	render: function() {
 		return (
 			<div id="message">
-				<input type="text" placeholder="SomeThings..." onChange={this.textChange} onKeyDown = {this.keyDown}/>
+				<input type="text" placeholder="SomeThings..." onChange={this.textChange} onKeyDown = {this.keyDown} value={this.state.text}/>
 			</div>
 		);
 	}

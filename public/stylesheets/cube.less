@@ -13,6 +13,7 @@ ul, li {
   bottom: 0;
   perspective: 1000px;
   box-sizing: border-box;
+  background:#41505D;
 }
 .world {
   position: relative;
@@ -35,6 +36,16 @@ ul, li {
   padding:20px;
   transform-style:preserve-3d;
   overflow: visible; 
+  
+}
+
+.plane-wrapper:hover {
+  transform: rotateZ(30deg) scaleZ(1.5);
+  
+}
+.plane-wrapper:hover .plane {
+  background:rgba(65, 80, 93, 0.75);
+  border:1px solid #fff;
 }
 .layout {
   box-sizing: border-box;
@@ -56,16 +67,17 @@ ul, li {
   width:100%;
   height:100%;
   transform-style:preserve-3d;
+  transition: all 0.5s ease-out;
 }
 .plane {
   position: absolute;
-  border: 1px solid #888;
   background: #FFF;
   height:100%;
   width:100%;
   left:0;
   bottom:0;
   backface-visibility:visible;
+  transition: all 0.3s ease-out;
 }
 
 .buildings {
@@ -73,27 +85,31 @@ ul, li {
 .front {
   transform-origin: 100% 100%;
   transform: rotate3d(1,0,0,-90deg);
+  background: #ccc;
 }
 
 .top {
+  background: #fff;
 }
 
 
 .left {
    transform-origin: 0 0;
    transform: rotate3d(0,1,0,-90deg);
-   border-right: 0 none;
+   border-right:0 none;
 }
 
 .right {
   transform-origin: 100% 0;
   transform: rotate3d(0,1,0,90deg);
-  border-left: 0 none;
+  background:#ddd;
+  border-left:0 none;
 }
 
 .back {
   transform-origin: 0 0;
   transform: rotate3d(1,0,0,90deg);
+  background: #ccc;
 }
 
 #message {
@@ -117,16 +133,27 @@ ul, li {
 }
 
 #message-board {
-  position:absolute;
-  top:0;
-  right:0;
-  width: 400px;
-  height:600px;
-  background:#eaeaea;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 600px;
+    background: rgba(234, 234, 234, 0.32);
+    border: 1px solid #989898;
+    border-top: 0 none;
+    padding: 10px;
+    overflow: hidden;
 }
 
 .message-title {
   font-size:0.8em;
+}
+
+.message-blink {
+  
+  .plane {
+    animation:blink 0.5s ease-in-out;
+  }
 }
 .message-plane {
   color:#fff;
@@ -150,4 +177,32 @@ ul, li {
     border-right: 5px solid #676767;
     width: 0;
     height: 0;
+}
+
+.message-board-title {
+  color:#000;
+  font-weight:bold;
+}
+
+.message-board-content {
+  text-indent: 1em;
+}
+
+
+@keyframes blink {
+    0%{
+        background: #fff;
+    }
+    25%{
+        background:#888;
+    }
+    50%{
+        background:#000;
+    }
+    75%{
+      background:#888;
+    }
+    100%{
+        background:inherit;
+    }
 }
