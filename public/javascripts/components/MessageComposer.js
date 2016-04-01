@@ -1,7 +1,8 @@
 var React = require('react');
-var GlobalActions = require('../actions/GlobalActions.js')
+var GlobalActions = require('../actions/GlobalActions.js');
 var ENTER_KEY_CODE = 13;
-var moment = require('moment')
+var moment = require('moment');
+var uuid = require('uuid');
 var MessageComposer = React.createClass({
 	getInitialState: function(){
 		return {
@@ -10,6 +11,7 @@ var MessageComposer = React.createClass({
 	},
 	_save: function(text){
 		var message = {
+			uuid: uuid.v4(),
 			text: text,
 			from: JSON.parse(localStorage['building']).name,
 			name: localStorage['name'],

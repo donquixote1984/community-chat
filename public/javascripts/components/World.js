@@ -59,7 +59,6 @@ var World = React.createClass({
         var messageContainer = {}
 
         this.state.messages.forEach(function(message){
-          console.log(message)
             if(!messageContainer[message.from]){
                messageContainer[message.from] = []
             }
@@ -78,7 +77,7 @@ var World = React.createClass({
             {
               this.state.buildings.map(function(building){
                  return (
-                    <Building size={size} data={building} messages={messageContainer[building.name]}/>
+                    <Building key={building.id} size={size} data={building} messages={messageContainer[building.name]}/>
                  )
               })
             }

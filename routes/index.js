@@ -7,15 +7,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/test',function(req,res,next){
-  res.render('test',{title:'Test'})
+  res.render('test',{title:'Test'});
 })
 
 router.get('/cities', function(req, res, next){
 	models.City.findAll().then(function(cities){
-	res.json(cities)
+		res.json(cities);
 	})
 })
 
+router.get('/communities', function(req, res, next){
+	models.Community.findAll().then(function(communities){
+		res.json(communities);
+	})
+})
 router.get('/community/:id', function(req, res, next){
 	models.City.findById(req.params.id,{include:models.Community}).then(function(city){
 		res.json(city.Communities);

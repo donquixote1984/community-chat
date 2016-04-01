@@ -92,7 +92,7 @@ var Building = React.createClass({
                                         
                                         this.state.messages.map(function(message){
                                             return (
-                                                <li>
+                                                <li key={message.uuid}>
                                                     <div className="message-title">{message.time} {message.name}</div>
                                                     <div className="message-content">{message.text}</div>
                                                 </li>

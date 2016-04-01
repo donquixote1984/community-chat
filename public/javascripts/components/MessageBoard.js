@@ -1,7 +1,7 @@
 var React = require('react');
 var MessageStore = require('../stores/MessageStore.js');
 var MessageTip = require('./MessageTip.js')
-
+var ReactDOM = require('react-dom');
 var MessageBoard = React.createClass({
 
 	getInitialState: function(){
@@ -17,7 +17,7 @@ var MessageBoard = React.createClass({
   		this.setState({messages: MessageStore.getAll()})
   	},
   	componentDidUpdate: function() {
-  		var node = this.getDOMNode();
+  		var node = ReactDOM.findDOMNode(this);
   		node.scrollTop = node.scrollHeight;
 	},
 	render: function() {
@@ -26,7 +26,7 @@ var MessageBoard = React.createClass({
 				<ul>
 					{
 						this.state.messages.map(function(message){
-							return (<li><MessageTip message={message}/></li>)
+							return (<li key={message.uuid}><MessageTip message={message}/></li>)
 						})
 					}
 				</ul>

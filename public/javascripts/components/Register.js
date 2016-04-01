@@ -53,24 +53,29 @@ var Register = React.createClass({
 	},
 	next: function(){
 		localStorage["name"] = this.state.name;
-		localStorage["city"] = JSON.stringify(this.state.city);
-		localStorage["community"] = JSON.stringify(this.state.community);
-		localStorage["building"] = JSON.stringify(this.state.building);
-
-		this.context.router.push({pathname:'/main'})
+		//localStorage["community"] = JSON.stringify(this.state.community);
+		//localStorage["building"] = JSON.stringify(this.state.building);
+		this.context.router.push({pathname:'/register/community'})
+	},
+	_onKeyDown: function(event){
+		if(event.keyCode === 13 && this.state.name.trim()!=''){
+			this.next();
+		}
 	},
 	render: function() {
 		var _this = this;
 		return (
-			<div className='register-board'>
-				<div className="main-content">
-					<label className="input-title">Name</label>
-					<input className="input-content" type="text" value={this.state.name?this.state.name:""} onChange={this._onChange} onKeyDown={this._onKeyDown} />
-					<RegionDropdown url="cities" selectItem={this.selectCity} name="city" onload={this.onCityload}/>
-					<RegionDropdown url={this.state.community_url} selectItem={this.selectCommunity} name="community" onload = {this.onCommunityLoad}/>
+			<div className='register-board container-fluid'>
+				<div className="main-content row">
+					<label className="input-title col-md-4">Please input your name : </label>
+					<input className="input-content col-md-6" type="text" value={this.state.name?this.state.name:""} onChange={this._onChange} onKeyDown={this._onKeyDown} />
+					{/*<RegionDropdown url="communities" selectItem={this.selectCommunity} name="community" onload = {this.onCommunityLoad}/>
 					<RegionDropdown url={this.state.building_url} selectItem={this.selectBuilding} name="building" onload={this.onBuildingLoad}/>
+					*/}
 				</div>
-				<a href="javascript:void(0)" onClick={this.next}>NEXT</a>
+				<div>
+					<a className="next-stage" href="javascript:void(0)" onClick={this.next}>NEXT</a>
+				</div>
 			</div>
 
 			
